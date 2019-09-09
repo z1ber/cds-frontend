@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pagina:PopupPage 
+    xmlns:pagina="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.karina">
+    <StackLayout >
+        <Frame Margin="25" Padding="10" BackgroundColor="#002361">
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="kari" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                    <Label Text="Nombre"
+                           TextColor="White"
+                           Grid.Column="0"
+                           Grid.Row="1"/>
+                    <Label Text="Karina Diaz"
+                           TextColor="White"
+                           Grid.Column="1"
+                           Grid.Row="1"/>
+                    <Label Text="Categoria"
+                           TextColor="White"
+                           Grid.Column="0"
+                           Grid.Row="2"/>
+                    <Label Text="Participante"
+                           TextColor="White"
+                           Grid.Column="1"
+                           Grid.Row="2"/>
+                    <Label Text="Correo"
+                           TextColor="White"
+                           Grid.Column="0"
+                           Grid.Row="3"/>
+                    <Label Text="karina.diaz@proyectosfgk.org"
+                           TextColor="White"
+                           Grid.Column="1"
+                           Grid.Row="3"/>
+                </Grid>
+                <Button
+                    Clicked="Button_Clicked"
+                    Text="Salir"
+                    TextColor="DeepPink"
+                    BorderWidth="1"
+                    BackgroundColor="Transparent"
+                    BorderColor="DeepPink"
+                    />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pagina:PopupPage>

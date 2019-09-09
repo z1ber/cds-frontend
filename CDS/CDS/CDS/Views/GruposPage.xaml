@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.GruposPage"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundImageSource="imgfond2">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Grup}">
+            <StackLayout Margin="10,90"  VerticalOptions="End">
+                <Button
+                    Text="Agregar Alumno"
+                    TextColor="White"
+                    BackgroundColor="#002361"
+                    FontAttributes="Bold"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

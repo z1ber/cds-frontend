@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.CohortePage"
+             NavigationPage.HasNavigationBar="False" 
+             BackgroundImageSource="imgfond2">
+    <ContentPage.Content>
+        <StackLayout Margin="20,90" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Frame
+                    HasShadow = "True"
+                    HorizontalOptions="CenterAndExpand"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    BackgroundColor="#002163"
+                    WidthRequest="100"
+                    Grid.Column="0"
+                    Grid.Row="0">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohorte 1"
+                        FontSize="12"
+                        TextColor="White"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow = "True"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    WidthRequest="100"
+                    BackgroundColor="#002163"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohorte 2"
+                        TextColor="White"
+                        FontSize="12"
+                          WidthRequest="100"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow = "True"
+                    HorizontalOptions="CenterAndExpand"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                     WidthRequest="100"
+                    BackgroundColor="#002163"
+                    Grid.Column="0"
+                    Grid.Row="1">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohorte 3"
+                        TextColor="White"
+                        FontSize="12"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow = "True"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    WidthRequest="100"
+                    BackgroundColor="#002163"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohorte 4"
+                        TextColor="White"
+                        FontSize="12"
+                          WidthRequest="100"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow = "True"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    WidthRequest="100"
+                    BackgroundColor="#002163"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohorte 5"
+                        FontSize="12"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Command="{Binding Cohorte5}"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.Grupo1"
+            BarBackgroundColor="#002361"
+            SelectedTabColor="#78D4EE"
+            UnselectedTabColor="White"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+            xmlns:local="clr-namespace:CDS.Views"
+            >
+    <local:Alumnosc5></local:Alumnosc5>
+    <local:horariosc5></local:horariosc5>
+</TabbedPage>

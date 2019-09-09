@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application 
+    xmlns:infra="clr-namespace:CDS.Infrastructure"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CDS.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <infra:InstanceLocator x:Key="Locator"/>  
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

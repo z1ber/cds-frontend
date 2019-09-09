@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.CompanierosPage"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundImageSource="imgfond2">
+    <ContentPage.Content>
+        <StackLayout Margin="10,90">
+            <ListView x:Name="docenteList" ItemSelected="listaProdutos_ItemSelected" SeparatorColor="Blue">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnUpdate" CommandParameter="{Binding .}" Text="Actualizar" />
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Eliminar" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            -->
+                            <StackLayout Padding="10,10" Orientation="Horizontal">
+                                <Label Text="{Binding docente}" HorizontalOptions="StartAndExpand" TextColor="#002361"/>
+                                <Label Text="{Binding nombreMateria}" TextColor="Blue" HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

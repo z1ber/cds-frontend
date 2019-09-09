@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.DocentePage"
+             BackgroundImageSource="imgfond2">
+    <ContentPage.Content>
+        <StackLayout Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Frame
+                    HasShadow = "True"
+                    HorizontalOptions="CenterAndExpand"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    BackgroundColor="#002163"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Cohortes"
+                        TextColor="White"
+                        WidthRequest="150"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Command="{Binding Grupos}"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                <Frame
+                    HasShadow = "True"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    BackgroundColor="#002163"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1">
+                    <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Compañeros de trabajo"
+                        TextColor="White"
+                        WidthRequest="150"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Command="{Binding Compañeros}"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False"    
+             BackgroundImage="fon.png"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Login}">
+            <StackLayout VerticalOptions="Center" Margin="20">
+                <Label 
+                Text="Ingrese sus credenciales"
+                HorizontalOptions="Center"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Large"
+                   />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image
+                    WidthRequest="15"
+                    HeightRequest="15"
+                    Source="usu"
+                    Grid.Column="0"
+                    Grid.Row="0"/>
+                    <Label
+                    Text="Usuario"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    FontSize="15"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    />
+                    <Entry
+                    Placeholder="Ej. FGKSA00003"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    x:Name="user"
+                    BackgroundColor="White"
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    />
+                    <Image
+                    WidthRequest="15"
+                    HeightRequest="15"
+                    Source="contra"
+                    Grid.Column="0"
+                    Grid.Row="1"/>
+                    <Label
+                    Text="Contraseña"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    FontSize="15"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    />
+                    <Entry
+                    Placeholder="Ingrese su contraseña"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    x:Name="pass"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    />
+                    <Label
+                    Text="Tipo de Usuario"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    FontSize="15"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    />
+                    <Picker
+                    Title="Selecciona uno"
+                    TextColor="#002361"
+                    x:Name="rol"
+                    BackgroundColor="White"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    >
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Administrador</x:String>
+                                <x:String>Docente</x:String>
+                                <x:String>Estudiante</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+                <Button
+                Text="Ingresar"
+                Clicked="Ingresar"
+                TextColor="White"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                BorderWidth="1"
+                BorderRadius="10"
+                />
+                <Button
+                Text="Salir"
+                Clicked="Salir"
+                TextColor="White"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                BorderWidth="1"
+                BorderRadius="10"
+                 IsEnabled="{Binding IsEnabled, Mode=TwoWay}"    
+                />
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

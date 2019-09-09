@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.Cohorte5Page"
+             BackgroundImageSource="imgfond2">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                    HasShadow = "True"
+                    HorizontalOptions="CenterAndExpand"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    BackgroundColor="#002163"
+                    WidthRequest="100"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                        Grid.ColumnSpan="2">
+                        <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Grupo 1"
+                        FontSize="12"
+                        TextColor="White"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        FontAttributes="Bold"
+                        Command="{Binding Grupo1}"
+                        BackgroundColor="Transparent"
+                        />
+                    </Frame>
+                    <Frame
+                    HasShadow = "True"
+                    HorizontalOptions="CenterAndExpand"
+                    OutlineColor = "#002163"
+                    CornerRadius="10"
+                    WidthRequest="100"
+                    BackgroundColor="#002163"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                        <Button
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Grupo 2"
+                        TextColor="White"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Transparent"
+                        />
+                    </Frame>
+                    
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

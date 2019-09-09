@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CDS.Views.HorariosPage"
+            BarBackgroundColor="#002361"
+            SelectedTabColor="#78D4EE"
+            UnselectedTabColor="White"
+             
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+            xmlns:local="clr-namespace:CDS.Views"
+             >
+    <local:Lunes Title="Lunes"></local:Lunes>
+    <local:Miercoles Title="Miercoles"></local:Miercoles>
+    <local:Viernes Title="Viernes"></local:Viernes>
+</TabbedPage>
