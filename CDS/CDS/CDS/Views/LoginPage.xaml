@@ -95,6 +95,11 @@
                         </Picker.ItemsSource>
                     </Picker>
                 </Grid>
+                <Label Text="Olvide mi contraseña" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalOptions="StartAndExpand" Text="Recordar contraseña" TextColor="White"/>
+                    <Switch HorizontalOptions="End" IsToggled="{Binding IsRemembered, Mode=TwoWay}"></Switch>
+                </StackLayout>
                 <Button
                 Text="Ingresar"
                 Clicked="Ingresar"
