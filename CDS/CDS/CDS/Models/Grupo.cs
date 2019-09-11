@@ -4,7 +4,10 @@ using System.Text;
 
 namespace CDS.Models
 {
-    class Grupo
+    public class Grupo
     {
+        public int idGrupo { get; set; }
+        public string nombreGrupo { get; set; }
+        public int idCohorte { get; set; }
     }
 }
