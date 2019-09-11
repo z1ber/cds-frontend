@@ -42,7 +42,7 @@ namespace CDS.Views
         {
             var item = (MasterPageItem)e.SelectedItem;
             Type page = item.TargetType;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(LoginPage)));
             IsPresented = false;
         }
     }
