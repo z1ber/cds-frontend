@@ -1,5 +1,6 @@
 ﻿using CDS.Models;
 using CDS.Services;
+using GalaSoft.MvvmLight.Command;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -8,41 +9,81 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CDS.ViewModels
 {
-    public class CompaViewModel: INotifyPropertyChanged 
+    public class CompaViewModel: BaseViewModel 
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private DialogService _dialogService;
+        private DocenteService doc;
+        private bool isRefreshing;
+        private Docente obj;
+
+        public Docente Obj
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
+            get { return obj; }
+            set
             {
-                return false;
+                obj = value; OnPropertyChanged();
+                if (value != null)
+                {
+                    //Opcion();
+                }
             }
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
-        public ObservableCollection<Usuario> Users { get; }
+
+        public bool IsRefreshing
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand RefreshCom
+
+        {
+            get
+            {
+                return new RelayCommand(Refrescar);
+            }
+        }
+
+        private void Refrescar()
+        {
+            IsRefreshing = true;
+            LoadDocentes();
+            IsRefreshing = false;
+        }
+
+        public ObservableCollection<Docente> Docentes { get; set; }
+
         public CompaViewModel()
         {
-            Users = new ObservableCollection<Usuario>();
-            LoadUsers().GetAwaiter();
+            Docentes = new ObservableCollection<Docente>();
+            _dialogService = new DialogService();
+            doc = new DocenteService();
+            LoadDocentes();
+            isRefreshing = false;
         }
-        private async Task LoadUsers(List<Usuario> lista = null)
+
+        private async void LoadDocentes()
         {
-            Users.Clear();
-            var userAPI = RestService.For<IRestClientAPI>(RestEndPoints.BaseUrl);
-            var result = await userAPI.GetAll();
-            foreach (var user in result)
+            var response = await doc.GetAll<Docente>("https://horario-cds.herokuapp.com/api/docente");
+            if (!response.isSuccess)
             {
-                Users.Add(user);
+                IsRefreshing = false;
+                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Ok");
+                return;
             }
+            Docentes = (ObservableCollection<Docente>)response.Result;
+            IsRefreshing = false;
         }
     }
 }

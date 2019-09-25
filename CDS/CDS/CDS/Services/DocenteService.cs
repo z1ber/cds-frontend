@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,39 @@ namespace CDS.Services
     public class DocenteService
     {
         HttpClient client = new HttpClient();
-        public async Task<List<Docente>> GetDocentesAsync()
-
+        public async Task<Response> GetAll<T>(string url)
         {
             try
             {
-                string url = "https://horario-cds.herokuapp.com/api/docente";
-                var response = await client.GetStringAsync(url);
-                var docente = JsonConvert.DeserializeObject<List<Docente>>(response);
-                return docente;
+                var response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
+                }
+                //string url = "https://horario-cds.herokuapp.com/api/docente";
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<T>>(result);
+                return new Response
+                {
+                    isSuccess = true,
+                    Result = list
+                };
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = "Error al cargar los datos"
+                };
             }
         }
 
+        /*
         public async Task AddDocenteAsync(Docente docente)
         {
             try
@@ -69,6 +87,6 @@ namespace CDS.Services
             string url = "https://horario-cds.herokuapp.com/api/docente/{0} ";
             var uri = new Uri(string.Format(url, docente.idDocente));
             await client.DeleteAsync(uri);
-        }
+        }*/
     }
 }

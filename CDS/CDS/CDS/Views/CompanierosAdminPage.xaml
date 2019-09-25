@@ -2,11 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CDS.Views.CompanierosAdminPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundImageSource="imgfond2">
     <ContentPage.Content>
         <StackLayout Margin="10,90">
-            <ListView x:Name="docenteList" ItemSelected="listaProdutos_ItemSelected" SeparatorColor="Blue">
+            <ListView 
+                x:Name="docenteList"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Docentes}"
+                SeparatorVisibility="None"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                SelectedItem="{Binding Obj, Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCom}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -27,7 +34,6 @@
             <Button
                 Text="Agregar Docente"
                 VerticalOptions="End"
-                Clicked="Button_Clicked"
                 BackgroundColor="#002361"
                 TextColor="White"
                 />
