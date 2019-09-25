@@ -3,10 +3,162 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CDS.Views.AgregarAlumnoPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView BindingContext="{Binding Login}">
+            <StackLayout VerticalOptions="Center" Margin="20, 90">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                    Text="Usuario"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    />
+                    <Entry
+                    Placeholder="Ej. D-JG001"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    />
+                    <Label
+                    Text="Contraseña"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    />
+                    <Entry
+                    Placeholder="Agregar contraseña"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    />
+                    <Label
+                    Text="Nombre"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    />
+                    <Entry
+                    Placeholder="Agregar nombre"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    />
+                    <Label
+                    Text="Apellido"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    />
+                    <Entry
+                    Placeholder="Agregar apellido"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    />
+                    <Label
+                    Text="DUI"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    />
+                    <Entry
+                    Placeholder="Agregar DUI"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    />
+                    <Label
+                    Text="Direccion"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="5"
+                    />
+                    <Entry
+                    Placeholder="Agregar direccion"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="5"
+                    />
+                    <Label
+                    Text="Telefono"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="6"
+                    />
+                    <Entry
+                    Placeholder="Agregar telefono"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="6"
+                    />
+                    <Label
+                    Text="IdRol"
+                    VerticalOptions="Center"
+                    TextColor="#002361"
+                    FontSize="15"
+                    Grid.Column="0"
+                    Grid.Row="7"
+                    />
+                    <Entry
+                    Placeholder="Agregar idrol"
+                    PlaceholderColor="#002361"
+                    TextColor="#002361"
+                    BackgroundColor="White"
+                    IsPassword="True"
+                    Grid.Column="1"
+                    Grid.Row="7"
+                    />
+                </Grid>
+                <Button
+                Text="Agregar"
+                Clicked="Button_Clicked"
+                TextColor="White"
+                BackgroundColor="#002361"
+                BorderColor="White"
+                BorderWidth="1"
+                BorderRadius="10"
+                />
+            </StackLayout>
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
