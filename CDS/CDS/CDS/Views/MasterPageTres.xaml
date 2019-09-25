@@ -15,7 +15,7 @@
                         <RowDefinition Height="675" />
                     </Grid.RowDefinitions>
                     <StackLayout Padding="0,10,0,0" HorizontalOptions="Center" VerticalOptions="Center">
-                        <circulo:CircleImage Aspect="AspectFill"  HeightRequest="300" WidthRequest="300" Source="Karina" x:Name="Karina"/>
+                        <circulo:CircleImage Aspect="AspectFill"  HeightRequest="300" WidthRequest="300" Source="" x:Name="Karina"/>
                         <Label Text="A-US001" TextColor="White" FontSize="Large" FontAttributes="Bold" x:Name="NomUsuario" HorizontalOptions="Center"/>
                         <Label Text="Ulises Samayoa" TextColor="White" FontSize="Large" x:Name="NombreTres"/>
                         <Label Text="Administrador" TextColor="White" FontSize="Large" x:Name="TipoTres"/>

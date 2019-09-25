@@ -22,7 +22,7 @@
         }
         private async void c5()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new Cohorte5Page());
+            await Application.Current.MainPage.Navigation.PushAsync(new Grupo1());
         }
         
         #endregion

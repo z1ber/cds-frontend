@@ -39,6 +39,7 @@
                     </ListView>
                 </StackLayout>
             </Grid>
+            
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
