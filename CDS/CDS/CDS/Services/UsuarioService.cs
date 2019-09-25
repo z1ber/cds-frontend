@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +12,35 @@ namespace CDS.Services
     public class UsuarioService
     {
         HttpClient client = new HttpClient();
-        public async Task<List<Usuario>> GetProdutosAsync()
-         
+        public async Task<Response> GetAll<T>(string url)
         {
             try
             {
-                string url = "https://horario-cds.herokuapp.com/api/usuario";
-                var response = await client.GetStringAsync(url);
-                var user = JsonConvert.DeserializeObject<List<Usuario>>(response);
-                return user;
+                var response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
+                }
+                //string url = "https://horario-cds.herokuapp.com/api/usuario";
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<T>>(result);
+                return new Response
+                {
+                    isSuccess = true,
+                    Result = list
+                };
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = "Error al cargar los datos"
+                };
             }
         }
 
@@ -49,25 +66,40 @@ namespace CDS.Services
             }
         }
 
-        public async Task LoginUsuarioAsync(Usuario usuario)
+        public async Task<Response> LoginUsuarioAsync<T>(T model)
         {
             try
             {
                 string url = "https://horario-cds.herokuapp.com/api/login";
-                var uri = new Uri(string.Format(url));
-                var data = JsonConvert.SerializeObject(usuario);
-                var content = new StringContent(data, Encoding.UTF8, "application / json");
-                //HttpResponseMessage response = null;
-                var response = await client.PostAsync(uri, content);
+                //var uri = new Uri(string.Format(url));
+                string request = JsonConvert.SerializeObject(model);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url,content);
                 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception();
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
                 }
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<List<Usuario>>(result);
+                var obj = list[0];
+                return new Response
+                {
+                    isSuccess = true,
+                    Result = Convert.ToString(obj.idRol)
+                };
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = ex.ToString(),
+                };
             }
         }
 

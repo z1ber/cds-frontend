@@ -8,55 +8,46 @@
     using System.Windows.Input;
     using Xamarin.Forms;
     using Views;
-   
+    using CDS.Services;
+    using CDS.Models;
+    using Newtonsoft.Json.Linq;
+    using System.Linq;
+
     internal class LoginViewModel : BaseViewModel
     {
 
         #region Atributes
-        private string user;
-        private string password;
-        private bool isEnabled;
-
-
+        private DialogService _dialogService;
+        private UsuarioService user;
+        private string _usuario;
+        private string _contra;
         #endregion
 
-        #region Properties
-        public string User
-        {
-            get { return this.user; }
-            set { SetValue(ref this.user, value); }
-        }
-        public string Password
-        {
-            get { return this.password; }
-            set { SetValue(ref this.password, value); }
-        }
-        public bool IsRemembered
-        {
-            get;
-            set;
-        }
-        public bool IsEnabled
-        {
-            get { return this.isEnabled; }
-            set { SetValue(ref this.isEnabled, value); }
-        }
 
+        #region Properties
+        public string nombreLogin
+        {
+            get { return _usuario; }
+            set { _usuario = value; OnPropertyChanged(); }
+        }
+        public string password
+        {
+            get { return _contra; }
+            set { _contra = value; OnPropertyChanged(); }
+        }        
         #endregion
 
         #region Constructors
         public LoginViewModel()
         {
-            this.IsRemembered = true;
-            this.IsEnabled = true;
-
-
+            user = new UsuarioService();
+            _dialogService = new DialogService();
         }
 
         #endregion
 
         #region Commands
-        public ICommand LoginComand
+        public ICommand Ingresar
         {
             get
             {
@@ -72,58 +63,61 @@
         }
         private async void Salir()
         {
-            
-           Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
         
         private async void Login()
         {
-            /*
-            if (string.IsNullOrEmpty(this.User))
+            try
             {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Usuario no ingresado",
-                    "Aceptar");
-                return;
-            }
-            if (string.IsNullOrEmpty(this.User))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Contraseña no ingresado",
-                    "Aceptar");
-                return;
-            }
+                if (string.IsNullOrEmpty(nombreLogin))
+                {
+                    await _dialogService.Message("Error", "El nombre de usuario es requerido");
+                    return;
+                }
+                if (string.IsNullOrEmpty(password))
+                {
+                    await _dialogService.Message("Error", "No ha ingresado una contraseña");
+                    return;
+                }                
 
-            this.IsEnabled = false; 
+                Usuario usuario = new Usuario
+                {
+                    nombreLogin = this.nombreLogin,
+                    password = this.password,
+                };
 
-            if (this.User == "P-KD001" && this.Password == "1234")
-            {
-               await Application.Current.MainPage.Navigation.PushAsync(new MasterPage());
-                
+                var ingresado = await user.LoginUsuarioAsync<Usuario>(usuario);
+
+                if (!ingresado.isSuccess)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", ingresado.Message, "Ok");
+                    return;
+                }
+                else
+                {
+                    var tipoRol = ingresado.Result;
+                    
+                    if (tipoRol.ToString() == "1")
+                    {
+                        Application.Current.MainPage = new NavigationPage(new AdministradorPage());
+                    }
+                    else if (tipoRol.ToString() == "2")
+                    {
+                        Application.Current.MainPage = new NavigationPage(new DocentePage());
+                    }
+                    else if (tipoRol.ToString() == "3")
+                    {
+                        Application.Current.MainPage = new NavigationPage(new HorariosPage());
+                    }
+                }
             }
-            else if (this.User == "D-MG001" && this.Password =="1234")
+            catch (Exception e)
             {
-               await Application.Current.MainPage.Navigation.PushAsync(new MasterPageDos());
+
+                await _dialogService.Message("Error",e.ToString());
             }
-            else if (this.User == "A-US001" && this.Password == "1234")
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new MasterPageTres());
-            }
-            else
-            {
-                this.IsEnabled = true;
-                await Application.Current.MainPage.DisplayAlert(
-                   "Error",
-                   "Correo o contraseña incorrectos",
-                   "Aceptar");
-                this.Password = string.Empty;
-                return;
-            }
-            this.IsEnabled = true;
-            this.User = string.Empty;
-            this.Password = string.Empty;*/
+              
 
         }
         #endregion
