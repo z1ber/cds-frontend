@@ -8,20 +8,12 @@
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
+            if (PropertyChanged != null)
             {
-                return;
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-
-            backingField = value;
-            OnPropertyChanged(propertyName);
         }
     }
 }
