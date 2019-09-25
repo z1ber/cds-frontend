@@ -100,15 +100,15 @@
                     
                     if (tipoRol.ToString() == "1")
                     {
-                        Application.Current.MainPage = new NavigationPage(new AdministradorPage());
+                        Application.Current.MainPage = new NavigationPage(new MasterPageTres());
                     }
                     else if (tipoRol.ToString() == "2")
                     {
-                        Application.Current.MainPage = new NavigationPage(new DocentePage());
+                        Application.Current.MainPage = new NavigationPage(new MasterPageDos());
                     }
                     else if (tipoRol.ToString() == "3")
                     {
-                        Application.Current.MainPage = new NavigationPage(new HorariosPage());
+                        Application.Current.MainPage = new NavigationPage(new MasterPage());
                     }
                 }
             }
