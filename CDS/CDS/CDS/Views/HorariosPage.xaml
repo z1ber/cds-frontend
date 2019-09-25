@@ -10,6 +10,9 @@
             xmlns:local="clr-namespace:CDS.Views"
              >
     <local:Lunes Title="Lunes"></local:Lunes>
+    <local:Martes Title="Martes"></local:Martes>
     <local:Miercoles Title="Miercoles"></local:Miercoles>
+    <local:Jueves Title="Jueves"></local:Jueves>
     <local:Viernes Title="Viernes"></local:Viernes>
+    
 </TabbedPage>
