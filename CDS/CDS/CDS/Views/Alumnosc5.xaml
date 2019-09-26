@@ -30,6 +30,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button
+                Text="Agregar Alumno"
+                Clicked="Button_Clicked"
+                TextColor="White"
+                BackgroundColor="#002361"
+                BorderColor="White"
+                BorderWidth="1"
+                BorderRadius="10"   
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -42,5 +42,10 @@ namespace CDS.Views
             //CrossTextToSpeech.Current.Speak("Llevas" + hora.nombreMateria + " con " + hora.docente + " de " + hora.horaInicio + " a " + hora.horaFin);
 
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new AgregarAlumnoPage());
+        }
     }
 }
