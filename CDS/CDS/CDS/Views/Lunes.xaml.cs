@@ -14,32 +14,12 @@ namespace CDS.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Lunes : ContentPage
 	{
-        HorarioService horSer;
-        List<Horario> lstHorario;
-		public Lunes ()
+        public Lunes ()
 		{
 			InitializeComponent ();
-            horSer = new HorarioService();
-            cargar();
+            BindingContext = new ViewModels.HorariosViewModel("Lunes",1);
 		}
-        /*private void Listhorario_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var studdent = e.Item as Horario;
-            DisplayAlert("Horario", studdent.Nombrem + "\n" + studdent.Docente+"\n"+studdent.Hora, "Aceptar");
-            CrossTextToSpeech.Current.Speak("llevas" + studdent.Nombrem + "con" + studdent.Docente + "de" + studdent.Hora);
-        }*/
-
-        private void Listhorario_Refreshing(object sender, EventArgs e)
-        {
-            cargar();
-        }
-        async void cargar()
-        {
-            lstHorario = await horSer.GetHorariosDiaAsync("Lunes",1);
-            horarioList.ItemsSource = lstHorario.OrderBy(item => item.horaInicio).ToList();
-
-        }
-
+        
         private void HorarioList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var hora = e.SelectedItem as Horario;

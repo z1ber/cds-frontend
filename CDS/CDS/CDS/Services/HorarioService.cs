@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,35 +12,67 @@ namespace CDS.Services
     public class HorarioService
     {
         HttpClient client = new HttpClient();
-        public async Task<List<Horario>> GetHorariosAsync()
+        public async Task<Response> GetHorariosAsync<T>(string url)
 
         {
             try
             {
-                string url = "https://horario-cds.herokuapp.com/api/horario";
-                var response = await client.GetStringAsync(url);
-                var horario = JsonConvert.DeserializeObject<List<Horario>>(response);
-                return horario;
+                var response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<T>>(result);
+                return new Response
+                {
+                    isSuccess = true,
+                    Result = list
+                };
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = "Error al cargar los datos"
+                };
             }
         }
 
-        public async Task<List<Horario>> GetHorariosDiaAsync(string dia, int grupo)
-
+        public async Task<Response> GetHorariosDiaAsync<T>(string dia, int grupo)
         {
             try
             {
-                string url = "https://horario-cds.herokuapp.com/api/horarios/" + dia+"/"+grupo;
-                var response = await client.GetStringAsync(url);
-                var horario = JsonConvert.DeserializeObject<List<Horario>>(response);
-                return horario;
+                string url = "https://horario-cds.herokuapp.com/api/horarios/" + dia + "/" + grupo;
+                var response = await client.GetAsync(url);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<ObservableCollection<T>>(result);
+                return new Response
+                {
+                    isSuccess = true,
+                    Result = list
+                };
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = "Error al cargar los datos"
+                };
             }
         }
 

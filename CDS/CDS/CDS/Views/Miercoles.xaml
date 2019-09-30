@@ -5,7 +5,16 @@
              x:Class="CDS.Views.Miercoles">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="horarioList" ItemSelected="HorarioList_ItemSelected" SeparatorColor="Blue">
+            <ListView 
+                x:Name="horarioList" 
+                ItemSelected="HorarioList_ItemSelected" 
+                SeparatorColor="Blue"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Horarios}"
+                SeparatorVisibility="None"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCom}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -16,15 +25,48 @@
                             </ViewCell.ContextActions>
                             -->
                             <StackLayout Padding="10,10" Orientation="Horizontal">
-                                <Image Source="calendar.png" HorizontalOptions="StartAndExpand"/>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding nombreMateria}" HorizontalOptions="StartAndExpand" TextColor="#002361"/>
-                                    <Label Text="{Binding docente}" TextColor="Blue" HorizontalOptions="Center" IsVisible="False"/>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding horaInicio}" HorizontalOptions="StartAndExpand" TextColor="#002361" IsVisible="False"/>
-                                        <Label Text="{Binding horaFin}" TextColor="Blue" HorizontalOptions="Center" IsVisible="False"/>
-                                    </StackLayout>
-                                </StackLayout>
+                                <Grid                                                                     
+                                    ColumnSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Image 
+                                        Source="calendar.png" 
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        HorizontalOptions="Start"
+                                        Grid.Column="0"
+                                        />
+
+                                    <Label 
+                                        Text="{Binding nombreMateria}" 
+                                        HorizontalOptions="CenterAndExpand" 
+                                        VerticalOptions="Center"
+                                        TextColor="#002361"
+                                        Grid.Column="1"
+                                        />
+
+                                    <Label 
+                                        Text="{Binding docente}" 
+                                        TextColor="Blue" 
+                                        HorizontalOptions="Center" 
+                                        VerticalOptions="Center"
+                                        Grid.Column="2"
+                                        />
+
+                                    <Label 
+                                        Text="{Binding horaInicio}" 
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"
+                                        TextColor="#002361" 
+                                        Grid.Column="3"/>
+
+                                </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
