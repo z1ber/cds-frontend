@@ -15,11 +15,8 @@ namespace CDS.Views
         public AgregarUsuarioPage()
         {
             InitializeComponent();
+            BindingContext = new ViewModels.AgregarUsuarioViewModel();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -44,25 +44,42 @@ namespace CDS.Services
             }
         }
 
-        public async Task AddUsuarioAsync(Usuario usuario)
+        public async Task<Response> AddUsuarioAsync<T>(T model)
         {
             try
             {
                 string url = "https://horario-cds.herokuapp.com/api/usuario";
-                var uri = new Uri(url);
-                var data = JsonConvert.SerializeObject(usuario);
+                //var uri = new Uri(url);
+                var data = JsonConvert.SerializeObject(model);
                 var content = new StringContent(data, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = null;
-                response = await client.PostAsync(uri, content);
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception();
+                    return new Response
+                    {
+                        isSuccess = false,
+                        Message = "Error de respuesta del servidor"
+                    };
                 }
+                var result = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<List<Usuario>>(result);
+                Usuario lista = list[0];
+                return new Response
+                {
+                    isSuccess = true,
+                    //Result = list[0].nombreLogin
+                    Result = lista
+                };
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new Response
+                {
+                    isSuccess = false,
+                    Message = ex.ToString()
+                };
             }
         }
 
