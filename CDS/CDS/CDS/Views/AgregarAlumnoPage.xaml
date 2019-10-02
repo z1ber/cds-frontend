@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CDS.Views.AgregarAlumnoPage">
+             x:Class="CDS.Views.AgregarAlumnoPage"
+             BackgroundImageSource="imgfond2">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Login}">
             <StackLayout VerticalOptions="Center" Margin="20, 90">
@@ -11,7 +12,6 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-
                     <Label
                     Text="Usuario"
                     VerticalOptions="Center"
@@ -21,7 +21,7 @@
                     Grid.Row="0"
                     />
                     <Entry
-                    Placeholder="Ej. D-JG001"
+                    Placeholder="Ej. FGKSA00001"
                     PlaceholderColor="#002361"
                     TextColor="#002361"
                     BackgroundColor="White"
