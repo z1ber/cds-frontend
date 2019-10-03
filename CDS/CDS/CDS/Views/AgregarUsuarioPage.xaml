@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CDS.Views.AgregarUsuarioPage"
              BackgroundImageSource="imgfond2"
+             xmlns:be="clr-namespace:CDS.Behaviors"
              >
     <ContentPage.Content>
 
@@ -95,11 +96,16 @@
                         Placeholder="Agregar DUI"
                         PlaceholderColor="#002361"
                         TextColor="#002361"
+                        Keyboard="Numeric"
                         Text="{Binding dui}"
                         BackgroundColor="White"
                         Grid.Column="1"
                         Grid.Row="2"
-                        />
+                        >
+                    <Entry.Behaviors>
+                        <be:DuiValidation Mask="XXXXXXXX-X"/>
+                    </Entry.Behaviors>
+                </Entry>
                 <Label
                         Text="Direccion"
                         VerticalOptions="Center"
@@ -133,7 +139,11 @@
                         BackgroundColor="White"
                         Grid.Column="1"
                         Grid.Row="4"
-                        />
+                        >
+                    <Entry.Behaviors>
+                        <be:TelefonoValidation Mask="XXXX-XXXX"/>
+                    </Entry.Behaviors>
+                </Entry>
                 <Label
                         Text="Rol"
                         VerticalOptions="Center"
